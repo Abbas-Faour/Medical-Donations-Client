@@ -1,0 +1,47 @@
+<h2 class="text-center text-success my-3">About</h2>
+
+<div class="row">
+<div class="col-sm-12 col-lg-6 p-1 p-sm-3">
+    <h4 class="text-center text-secondary mb-3">Medical Donations</h4>
+    <p class="p-4 fs-5 text-secondary border">Medical Donations is a website that facilitates communication between people so they can offer available medicines or request a medicine they need.
+        this website is launched to help people during the difficult economical situation that Lebanon is passing through.
+    </p>
+</div>
+<div class="col-sm-12 col-lg-6 p-1">
+    <h4 class="text-center text-secondary">Feedbacks</h4>
+    <div class="container py-2">
+
+        <!-- Bootstrap 5 starter form -->
+        <form #f="ngForm" (ngSubmit)="submit()" class="p-1">
+      
+          <!-- Name input -->
+          <div class="mb-2">
+            <label class="form-label" for="name">Name</label>
+            <input class="form-control" [(ngModel)]="feed.name" #name="ngModel" name="name" type="text" required/>
+            <div class="text-danger" *ngIf="name.touched && !name.valid">Name is required.</div>
+          </div>
+      
+          <!-- Email address input -->
+          <div class="mb-2">
+            <label class="form-label" for="emailAddress">Email Address</label>
+            <input class="form-control" name="email" [(ngModel)]="feed.email" #email="ngModel" type="email"  required/>
+            <div class="text-danger" *ngIf="email.touched && !email.valid">Email is required.</div>
+          </div>
+      
+          <!-- Message input -->
+          <div class="mb-2">
+            <label class="form-label" for="message">Message</label>
+            <textarea class="form-control" name="message" type="text" [(ngModel)]="feed.message" #message="ngModel" style="height: 10rem;" required></textarea>
+            <div class="text-danger" *ngIf="message.touched && !message.valid">Message is required.</div>
+          </div>
+      
+          <!-- Form submit button -->
+          <div class="d-grid">
+            <button n-submit class="btn btn-success btn-lg" [disabled]="!f.valid" [disabled]="requestSent" type="submit">Submit</button>
+          </div>
+      
+        </form>
+      
+      </div>
+</div>
+</div>

@@ -1,0 +1,35 @@
+.card-img{
+    max-height: 180px;
+    min-height: 180px;
+    max-width: 200px;
+}
+
+.my-card{
+    max-height: 370px;
+}
+
+.form-control:focus {
+    color: #222;
+    background-color: #fff;
+    border-color: #64f169;
+    outline: 0;
+    box-shadow: 0 0 0 0.15rem rgba(106, 248, 106, 0.25);
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:active,
+  input:-webkit-autofill:focus {
+      background-color: #FFFFFF !important;
+      color: #555 !important;
+      -webkit-box-shadow: 0 0 0 1000px white inset !important;
+      box-shadow: 0 0 0 1000px white inset !important;
+      -webkit-text-fill-color: #555555 !important;
+  }
+
+  .page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #28b62c;
+    border-color: #32c937;
+}

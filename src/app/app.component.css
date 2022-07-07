@@ -1,0 +1,16 @@
+.cont {
+    min-height: 85vh;
+    background-color: rgb(255, 253, 255);
+    font-family: 'Poppins', sans-serif;
+}
+
+.form-control:focus {
+    color: #222;
+    background-color: #fff;
+    border-color: #64f169;
+    outline: 0;
+    box-shadow: 0 0 0 0.15rem rgba(106, 248, 106, 0.25);
+  }
+
+
+

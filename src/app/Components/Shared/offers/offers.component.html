@@ -1,0 +1,45 @@
+<div class="d-flex justify-content-center" *ngIf="isLoading; else loaded">
+  <app-loader></app-loader>
+</div>
+
+<ng-template #loaded>
+
+
+<div class="col-12">
+  <h2 class="text-center text-success m-2">Offers</h2>
+  <div class="input-group mb-3">
+
+    <input
+     type="text" name="filter"
+     [(ngModel)]="filter" class="form-control" placeholder="search by name, description or city...">
+
+     <button (click)="onFilterChange()" class="btn btn-outline-success btn-sm p-2 rounded-2 mx-md-1" type="submit">Search</button>
+     <button (click)="onFilterReset()" class="btn btn-outline-danger btn-sm p-2 rounded-2" type="submit">Reset</button>
+  </div>
+
+  <h3 class="text-center text-danger">{{header}}</h3>
+
+    <div class="row g-3 my-2">
+        <div *ngFor="let m of result?.items" class="col-lg-3 col-md-6 col-sm-12" >
+          <a [routerLink]="['/medicine-details',m.id]" class="text-decoration-none text-secondary">
+            <div class="card my-card p-1 text-center shadow ">
+            <img src="{{m.imageUrl}}" class="card-img-top card-img mx-auto" alt="{{m.name}}">
+            <div class="card-body">
+              <h5 class="card-title">{{m.name}}</h5>
+              <h6 class="card-text">{{m.category.name}} - {{m.postedAt | date}}</h6>
+              <h6 class="card-text">{{m.user.address.fullName}} - {{m.user.address.city}}</h6>
+          
+            </div>
+            </div>
+          </a>
+          </div>
+          
+          <div class="justify-content-center d-flex">
+            <pagination [total-items]="result.totalItems" [page-size]="query.pageSize" (page-changed)="onPageChange($event)"></pagination>
+          </div>
+           
+    </div>
+ 
+</div>
+
+</ng-template>

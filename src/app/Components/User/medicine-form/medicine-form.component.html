@@ -1,0 +1,75 @@
+<h2 class="text-center text-secondary my-2">{{heading}}</h2>
+
+<div class="row">
+    <div class="col-md-6 col-sm-12 my-2">
+    
+        <div class="card my-2 p-2">
+            <img src="{{url}}" class="card-img-top my-img mx-auto" alt="">
+            <span class="text-danger">{{msg}}</span>
+            <div class="card-body">
+              <h5 class="card-title">Name:  {{medicine.name}}</h5>
+              <p class="card-text">Description: {{medicine.description}}</p>
+              <p class="card-text">Quantity: {{medicine.quantity}}</p>
+              <p class="card-text">Category: {{category}}</p>
+            </div>
+          </div>
+    
+    </div>
+
+    <div class="col-md-6 col-sm-12 ">
+        <form #f="ngForm" (submit)="submit()">
+            <div class="form-group m-1 ">
+
+                <label for="name" class="form-lebel text-secondary">Name</label>
+                <input [(ngModel)]="medicine.name" #name="ngModel" type="text"
+                 name="name" id="name" class="form-control" required>
+
+                 <div class="text-danger" *ngIf="name.touched && !name.valid">Name is required.</div>
+
+            </div>
+            <div class="form-group m-1">
+                <label for="description" class="form-lebel text-secondary">Description</label>
+                <textarea [(ngModel)]="medicine.description" name="description"
+                 id="description" class="form-control" rows="4"></textarea> 
+
+            </div>
+
+            <div class="form-group m-1">
+                <label for="quantity" class="form-lebel text-secondary">Quantity</label>
+                <input [(ngModel)]="medicine.quantity" #quantity="ngModel" type="number" 
+                name="quantity" id="quantity" class="form-control" required min="1">
+
+                <div class="text-danger" *ngIf="quantity.touched && !quantity.valid">Quantity is required.</div>
+            </div>
+    
+            <div class="form-group m-1">
+                <label for="categoryId" class="form-lebel text-secondary">Category</label>
+
+                <select [(ngModel)]="medicine.categoryId" #categoryId="ngModel" 
+                name="categoryId" id="categoryId" class="form-select"
+                 required (change)="onCategoryChange($event)">
+
+                    <option value=""></option>
+                    <option *ngFor="let c of categories" value="{{c.id}}">{{c.name}}</option>
+    
+                </select>
+                <div class="text-danger" *ngIf="categoryId.touched && !categoryId.valid">Category is required.</div>
+            </div>
+
+            <div class="form-group m-1">
+                <label for="image" class="form-lebel text-secondary"></label>
+
+                <input type="file"
+                 class="form-control" (change)="onFileSelect($event)">
+
+            </div>
+
+            <div class="d-flex p-2 justify-content-start">
+                <button n-submit type="submit" [disabled]="!f.valid" [disabled]="requestSent" class="btn btn-success me-2">Submit</button>
+                <button type="reset" class="btn btn-danger"> clear</button>
+            </div>
+        </form>
+    </div>
+    
+ 
+</div> 

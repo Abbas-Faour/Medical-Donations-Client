@@ -1,0 +1,73 @@
+<h2 class="text-center text-Secondary my-3">Posts</h2>
+
+<div class="col-md-10 offset-md-1">
+
+    <div class="input-group mb-3">
+
+        <input
+         type="text" name="filter"
+         [(ngModel)]="filter" class="form-control" placeholder="search by name..">
+    
+         <button (click)="onFilterChange()" class="btn btn-outline-success btn-sm p-2 rounded-2 mx-md-1" type="submit">Search</button>
+     <button (click)="onFilterReset()" class="btn btn-outline-danger btn-sm p-2 rounded-2" type="submit">Reset</button>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-striped ta">
+          <thead>
+            <tr>
+              <th *ngFor="let c of columns">
+                <div *ngIf="c.isSortable" (click)="sortBy(c.key)">
+                  {{ c.title }}
+                  <span *ngIf="query.sortBy === c.key" class="p-1" >
+                    <fa-icon *ngIf="query.isSortAscending" [icon]="faSortUp"></fa-icon>
+                    <fa-icon *ngIf="!query.isSortAscending" [icon]="faSortDown"></fa-icon>
+                  </span>
+
+                </div>
+                <div *ngIf="!c.isSortable">
+                  {{ c.title }}
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let v of userMedicines.items"  class="text-center">
+              <td>{{ v.name }}</td>
+              <td>{{ v.quantity}}</td>
+              <td>{{ v.category.name }}</td>
+              <td>{{ v.postedAt | date }}</td>
+              <td>
+                  <button class="btn btn-sm btn-info me-sm-1 me-lg-3" [routerLink]="['/user/medicine-form/',v.id]">Edit</button>
+                  <button data-bs-toggle="modal" data-bs-target="#exampleModal"
+                  class="btn btn-sm btn-danger" (click)="displayModel(v)" >Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="justify-content-center d-flex my-3 ">
+        <pagination [total-items]="userMedicines.totalItems" [page-size]="query.pageSize" (page-changed)="onPageChange($event)"></pagination>
+      </div>
+
+        
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                Are you sure you want to delete {{medicineToDelete?.name}}
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" (click)="removeMedicine()" data-bs-dismiss="modal">Delete</button>
+                </div>
+            </div>
+            </div>
+        </div>
+</div>

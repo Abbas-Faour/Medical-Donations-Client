@@ -1,0 +1,11 @@
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #28b62c;
+    border-color: #27a52c;
+
+}
+
+.page-item{
+    cursor: pointer;
+}

@@ -1,0 +1,108 @@
+<h2 class="text-center text-success my-3">Register</h2>
+
+<div class="text-center">
+      <img src="../../../../assets/images/user.png" alt="user" class="user-img">
+</div>
+
+<div class="col-md-6 offset-md-3 text-success">
+
+  <ul class="nav nav-tabs " id="myTab" role="tablist">
+
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="settings-tab" data-bs-toggle="tab" data-bs-target="#address" type="button" role="tab" aria-controls="address" aria-selected="false">Location</button>
+    </li>
+  </ul>
+
+  <form #f="ngForm" class="p-1 mt-1 text-success" (ngSubmit)="submit()" novalidate>
+
+  <!-- Tab panes -->
+      <div class="tab-content">
+        <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+
+          <div class="form-group m-1 text-success">
+            <label for="fullName">Full Name</label>
+
+            <input [(ngModel)]="user.fullName" #fullName="ngModel" required
+            type="text" name="fullName" id="fullName" class="form-control">
+
+            <div class="text-danger" *ngIf="fullName.touched && !fullName.valid">Name is required.</div>
+
+          </div>
+
+          <div class="form-group m-1 text-success">
+            <label for="email">Email</label>
+
+            <input [(ngModel)]="user.email" #email="ngModel" required
+            type="email" name="email" id="email" class="form-control">
+            <div class="text-danger" *ngIf="email.touched && !email.valid">Email is required.</div>
+          </div>
+
+          <div class="form-group m-1 text-success">
+            <label for="password">Password</label>
+
+            <input [(ngModel)]="user.password" #password="ngModel" required
+            type="password" name="password" id="password" class="form-control" placeholder="Password must be at least 6 characters and contains 1 digit, symbol, upper & lower case">
+            <div class="text-danger" *ngIf="password.touched && !password.valid">Password field is required.</div>
+          </div>
+
+          <div class="form-group m-1 text-success">
+            <label for="confirmPassword">Confirm Password</label>
+
+            <input [(ngModel)]="user.canfirmPassword" #confirmPassword="ngModel"
+            ngValidateEqual="password"
+            type="password" name="confirmPassword" id="confirmPassword" class="form-control">
+
+            <div *ngIf="(confirmPassword.dirty || confirmPassword.touched) && confirmPassword.invalid">
+              <p class="text-warning" *ngIf="confirmPassword.hasError('notEqual') && password.valid">
+                Passwords Don't Match
+              </p>
+          </div>
+          
+          </div>
+        </div>
+
+        <div class="tab-pane" id="address" role="tabpanel" aria-labelledby="address-tab" tabindex="0">
+
+          <div class="form-group m-1 text-success">
+            <label for="city">City</label>
+
+            <input [(ngModel)]="user.city" #city="ngModel" required
+            type="text" name="city" id="city" class="form-control">
+
+            <div class="text-danger" *ngIf="city.touched && !city.valid">City is required.</div>
+          </div>
+
+          <div class="form-group m-1 text-success">
+            <label for="street">Address</label>
+
+            <textarea [(ngModel)]="user.street" #street="ngModel" required
+            name="street" id="street" rows="3" class="form-control"></textarea>
+
+            <div class="text-danger" *ngIf="street.touched && !street.valid">Address field is required.</div>
+          </div>
+
+          <div class="form-group m-1 text-success">
+            <label for="phoneNumber">Phone</label>
+
+            <input [(ngModel)]="user.phoneNumber" #phoneNumber="ngModel" required maxlength="8" minlength="8"
+            type="tel" name="phoneNumber" id="phoneNumber" class="form-control" placeholder="+961">
+             
+
+            <div class="text-danger" *ngIf="phoneNumber.touched && !phoneNumber.valid">Phone Number is required.</div>
+
+          </div>
+
+        </div>
+        
+      </div>
+
+        <div class="d-flex p-2 justify-content-start">
+            <button n-submit type="submit" [disabled]="!f.valid" [disabled]="requestSent" class="btn btn-success me-2">Register</button>
+            <button type="reset" class="btn btn-danger"> clear</button>
+        </div>
+
+      </form>
+</div>

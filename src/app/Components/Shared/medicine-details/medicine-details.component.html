@@ -1,0 +1,47 @@
+
+<h3 class="text-center text-secondary mt-4">{{medicine.name | uppercase}}</h3>
+
+<div class="col-sm-12 col-md-8 offset-md-2">
+
+<div class="text-center">
+
+<img src="{{medicine.imageUrl}}" height="250px" width="250px" class="my-2" alt="{{medicine.name}}">
+
+<ul class="nav nav-tabs " id="myTab" role="tablist">
+
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="false">Info</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="settings-tab" data-bs-toggle="tab" data-bs-target="#address" type="button" role="tab" aria-controls="address" aria-selected="false">Location</button>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane active" id="description" role="tabpanel" aria-labelledby="description-tab" tabindex="0">
+
+        <ul class="list-group text-start list-group-flush p-2 bg-secondary ">
+            <li class="list-group-item p-3 ">Description: {{medicine.description}}</li>
+            <li class="list-group-item p-3 ">Category: {{medicine.category.name}}</li>
+            <li class="list-group-item p-3 ">Quantity: {{medicine.quantity}}</li>
+        </ul>
+      
+    </div>
+
+    <div class="tab-pane" id="address" role="tabpanel" aria-labelledby="address-tab" tabindex="0">
+
+        <ul class="list-group text-start list-group-flush p-2 bg-secondary">
+            <li class="list-group-item p-3">By: {{medicine.user.address.fullName}}</li>
+            <li class="list-group-item p-3">From: {{medicine.user.address.city}}</li>
+            <li class="list-group-item p-3">{{medicine.user.address.street}}</li>
+            <li class="list-group-item p-3">Phone Number: {{medicine.user.address.phoneNumber}}</li>
+        </ul>
+
+    </div>
+
+    </div>
+    
+  </div>
+
+
+ 
