@@ -3,4 +3,4 @@ export const environment = {
 };
 
 export const backend : string = "https://medical-donations-server1.azurewebsites.net/api"
-export const blobStorage : string = "https://faour.blob.core.windows.net/images/"
+export const blobStorage : string = "https://medicialblob.blob.core.windows.net/images/"
